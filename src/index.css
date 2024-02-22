@@ -1,0 +1,82 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+}
+
+:root {
+  font-size: 62.5%;
+
+  /* widths */
+  --mobile-width: 375 px;
+  --desktop-width: 1440 px;
+
+  /* ====> Colors <==== */
+  /* ====> primary <==== */
+  --primary-bright-blue: hsl(220, 98%, 61%);
+  /* --Check-Background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)); */
+
+  /* ====> Neutral <==== */
+  /* 252 7 28 */
+  /* ====> Light Theme <==== */
+  --neutral-very-light-gray: hsl(0, 0%, 98%);
+  --neutral-very-light-grayish-Blue: hsl(236, 33%, 92%);
+  --neutral-Light-Grayish-Blue: hsl(233, 11%, 84%);
+  --neutral-Dark-Grayish-Blue: hsl(236, 9%, 61%);
+  --neutral-Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+
+  /* ====> Dark Theme <==== */
+  --Very-Dark-Blue: hsl(235, 21%, 11%);
+  --Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+  --Light-Grayish-Blue: hsl(234, 39%, 85%);
+  --Light-Grayish-Blue-hover: hsl(236, 33%, 92%);
+  --Dark-Grayish-Blue: hsl(234, 11%, 52%);
+  --Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
+  --Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
+}
+
+body {
+  font-size: 1.8rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  /* display: relative;
+  width: 100%;
+  max-width: var(--global-max-width); */
+  min-height: 100vh;
+  /* margin-bottom: 5rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  background-color: var(--neutral-very-light-gray);
+  background-image: url("src/images/bg-desktop-light.jpg");
+
+  /* height: 500px; */
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+}
+
+/* ====================== Heading ====================== */
+h1 {
+  color: var(--neutral-very-light-gray);
+  letter-spacing: 1.5rem;
+}
+
+/* ====================== hover ====================== */
+TaskItemsList:hover,
+CheckButton:hover {
+  cursor: pointer;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* ====================== ====================== */

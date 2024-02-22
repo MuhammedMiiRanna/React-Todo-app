@@ -1,0 +1,22 @@
+.task {
+  border: none;
+  outline: none;
+}
+.task:hover {
+  cursor: pointer;
+}
+
+.task-check {
+  color: var(--neutral-Light-Grayish-Blue);
+  text-decoration: line-through;
+}
+
+.task-container {
+  background-color: var(--neutral-very-light-gray);
+  border-bottom: 1px solid var(--neutral-Light-Grayish-Blue);
+  padding: 15px;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-start;
+  align-items: center;
+}

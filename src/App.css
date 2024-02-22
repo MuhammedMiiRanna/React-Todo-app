@@ -1,0 +1,16 @@
+#root {
+  /* for test */
+  /* border: 1px solid black; */
+  margin: 5rem 0;
+  width: 90%;
+  max-width: 560px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header svg:hover {
+  cursor: pointer;
+}

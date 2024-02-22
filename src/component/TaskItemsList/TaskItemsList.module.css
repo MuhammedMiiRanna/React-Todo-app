@@ -1,0 +1,45 @@
+.TaskItemsList {
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
+  -webkit-box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
+  -moz-box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
+}
+.control {
+  /* color: dodgerblue; */
+  background-color: var(--neutral-very-light-gray);
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.items-left {
+  width: 7.5rem;
+  text-align: right;
+}
+
+/* .control button {
+  background: none;
+  border: none;
+  outline: none;
+} */
+.control,
+.control button {
+  color: var(--neutral-Dark-Grayish-Blue);
+}
+.control button:hover {
+  cursor: pointer;
+  color: var(--neutral-Very-Dark-Grayish-Blue);
+}
+.selected {
+  color: var(--primary-bright-blue) !important;
+}
+.no-items {
+  background-color: var(--neutral-very-light-gray);
+  border-bottom: 1px solid var(--neutral-Light-Grayish-Blue);
+  padding: 10px;
+  text-align: center;
+}

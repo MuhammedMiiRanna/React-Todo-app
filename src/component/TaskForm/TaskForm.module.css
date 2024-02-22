@@ -1,0 +1,50 @@
+.task {
+  background-color: transparent;
+  /* width: 100%; */
+  border: none;
+  outline: none;
+  flex-grow: 1;
+}
+
+.task-container {
+  border-radius: 5px;
+  background-color: var(--neutral-very-light-gray);
+  /* test purpose */
+  /* border: 1px solid black;  */
+  padding: 15px;
+  margin: 20px 0;
+  box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
+  -webkit-box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
+  -moz-box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
+}
+
+.task-container form {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Other browsers */
+input::placeholder {
+  color: var(--neutral-Dark-Grayish-Blue); /* Placeholder text color */
+  font-style: italic; /* Placeholder text style */
+}
+
+/* For Firefox */
+input:-moz-placeholder {
+  color: var(--neutral-Dark-Grayish-Blue);
+  font-style: italic;
+}
+
+/* For Internet Explorer 10-11 */
+input::-ms-input-placeholder {
+  color: var(--neutral-Dark-Grayish-Blue);
+  font-style: italic;
+}
+
+/* .text-dange {
+  font-size: 0.5rem;
+  margin: 1rem;
+  color: red;
+} */
