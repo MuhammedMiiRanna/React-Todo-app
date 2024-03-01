@@ -5,13 +5,20 @@ import styles from "./TaskItemsList.module.css";
 
 interface Props {
   tasksList: TasksInterface[];
+  lightsTheme: boolean;
   // handleClick: (data: TasksInterface) => void;
   onCheck: (index: number) => void;
   onFilter: (filter: string) => void;
   onClear: () => void;
 }
 
-const TaskItemsList = ({ tasksList, onCheck, onFilter, onClear }: Props) => {
+const TaskItemsList = ({
+  tasksList,
+  lightsTheme,
+  onCheck,
+  onFilter,
+  onClear,
+}: Props) => {
   const [selectedId, setSelectedid] = useState("0");
 
   const handleClick = (id: string) => {
@@ -23,12 +30,14 @@ const TaskItemsList = ({ tasksList, onCheck, onFilter, onClear }: Props) => {
       : onFilter("completed");
     // console.log(event);
   };
+
   return (
     <div className={styles["TaskItemsList"]}>
       {tasksList.length > 0 ? (
         tasksList.map((task, index) => {
           return (
             <TaskItem
+              lightsTheme={lightsTheme}
               key={index}
               children={task.task}
               isChecked={task.isChecked}
@@ -39,7 +48,13 @@ const TaskItemsList = ({ tasksList, onCheck, onFilter, onClear }: Props) => {
       ) : (
         <div className={styles["no-items"]}>GG! No items so far</div>
       )}
-      <div className={styles["control"]}>
+      <div
+        className={
+          lightsTheme
+            ? styles["control"]
+            : `${styles["control"]} ${styles["control__dark"]}`
+        }
+      >
         <div className={styles["items-left"]}>
           {tasksList.reduce(
             (acc, task) => (!task.isChecked ? acc + 1 : acc),

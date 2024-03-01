@@ -15,6 +15,10 @@
   justify-content: space-between;
   align-items: center;
 }
+.control__dark {
+  /* color: dodgerblue; */
+  background-color: var(--Very-Dark-Desaturated-Blue);
+}
 
 .items-left {
   width: 7.5rem;

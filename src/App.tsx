@@ -23,7 +23,9 @@ function App() {
       : filterType === "active"
       ? tasks.filter((task) => !task.isChecked)
       : tasks.filter((task) => task.isChecked);
-  // TODo
+  // TODO
+  // This function is used so each time a chnage is made it
+  // will be saved to local files or whatever xD
   // const handleTasksChanges = () => {};
   const handleChnageTheme = () => {
     setLightsTheme(!lightsTheme);
@@ -47,6 +49,7 @@ function App() {
     console.log("> Filter type:", filter);
     setFilterType(filter);
   };
+
   const handleClear = () => {
     console.log("> Clear Completed!");
     setTasks([...tasks.filter((task) => !task.isChecked)]);
@@ -55,14 +58,15 @@ function App() {
   return (
     <>
       {/* {checkIcon} {crossIcon} */}
-      <header className="">
+      <header>
         <h1>TODO</h1>
         <span onClick={handleChnageTheme}>
           {lightsTheme ? moonIcon : sunIcon}
         </span>
       </header>
-      <TasksForm onSubmit={handleSubmit}></TasksForm>
+      <TasksForm lightsTheme={lightsTheme} onSubmit={handleSubmit}></TasksForm>
       <TaskItemsList
+        lightsTheme={lightsTheme}
         tasksList={visibleTasks}
         onCheck={handleCheck}
         onFilter={handleFilter}

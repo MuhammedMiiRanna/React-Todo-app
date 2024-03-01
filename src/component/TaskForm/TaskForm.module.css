@@ -8,7 +8,6 @@
 
 .task-container {
   border-radius: 5px;
-  background-color: var(--neutral-very-light-gray);
   /* test purpose */
   /* border: 1px solid black;  */
   padding: 15px;
@@ -16,6 +15,13 @@
   box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
   -webkit-box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
   -moz-box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
+}
+.task-container__whi {
+  /* thats the for the light theme */
+  background-color: var(--neutral-very-light-gray);
+}
+.task-container__dark {
+  background-color: var(--Very-Dark-Desaturated-Blue);
 }
 
 .task-container form {

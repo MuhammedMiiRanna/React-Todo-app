@@ -20,3 +20,7 @@
   justify-content: flex-start;
   align-items: center;
 }
+.task-container__dark {
+  background-color: var(--Very-Dark-Desaturated-Blue);
+  border-bottom: 1px solid var(--Very-Dark-Grayish-Blue);
+}

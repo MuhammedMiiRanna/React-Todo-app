@@ -4,13 +4,14 @@ import styles from "./TaskForm.module.css";
 
 interface Props {
   onSubmit: (taskText: string) => void;
+  lightsTheme: boolean;
 }
 
 interface FormData {
   task: string;
 }
 
-const TasksForm = ({ onSubmit }: Props) => {
+const TasksForm = ({ onSubmit, lightsTheme }: Props) => {
   const { register, handleSubmit, reset } = useForm<FormData>();
 
   const formSubmit = (data: FieldValues) => {
@@ -20,13 +21,19 @@ const TasksForm = ({ onSubmit }: Props) => {
   };
 
   return (
-    <div className={styles["task-container"]}>
+    <div
+      className={
+        lightsTheme
+          ? [styles["task-container"], styles["task-container__whi"]].join(" ")
+          : [styles["task-container"], styles["task-container__dark"]].join(" ")
+      }
+    >
       {/* <CheckButton isChecked={false} onCheck={() => handleSubmit}></CheckButton> */}
       <form onSubmit={handleSubmit(formSubmit)}>
         {/* <CheckButton onClick={() => handleSubmit}></CheckButton> */}
         <button type="submit">
           {/* <button className={styles["submit"]} type="submit"> */}
-          <MdDone color="black" />
+          <MdDone color={lightsTheme ? "black" : "white"} />
         </button>
         <input
           {...register("task", { required: true, minLength: 3 })}
