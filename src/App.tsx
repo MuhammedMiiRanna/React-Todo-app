@@ -8,7 +8,7 @@ import { TasksInterface } from "./interface";
 
 function App() {
   const [filterType, setFilterType] = useState("all");
-  const [lightsTheme, setLightsTheme] = useState(true);
+  const [lightsTheme, setLightsTheme] = useState(false);
   // TODO make a service to get
   // the tasks from local storage
   const [tasks, setTasks] = useState<TasksInterface[]>([
@@ -29,6 +29,7 @@ function App() {
   // const handleTasksChanges = () => {};
   const handleChnageTheme = () => {
     setLightsTheme(!lightsTheme);
+    document.body.style.backgroundColor = "var(--Very-Dark-Blue);";
   };
 
   const handleSubmit = (taskTitle: string) => {
@@ -45,6 +46,11 @@ function App() {
     );
   };
 
+  const handleDelete = (key: number) => {
+    console.log("> Delete !", key);
+    setTasks(tasks.filter((_, index) => index !== key));
+  };
+
   const handleFilter = (filter: string) => {
     console.log("> Filter type:", filter);
     setFilterType(filter);
@@ -56,23 +62,29 @@ function App() {
   };
 
   return (
-    <>
-      {/* {checkIcon} {crossIcon} */}
-      <header>
-        <h1>TODO</h1>
-        <span onClick={handleChnageTheme}>
-          {lightsTheme ? moonIcon : sunIcon}
-        </span>
-      </header>
-      <TasksForm lightsTheme={lightsTheme} onSubmit={handleSubmit}></TasksForm>
-      <TaskItemsList
-        lightsTheme={lightsTheme}
-        tasksList={visibleTasks}
-        onCheck={handleCheck}
-        onFilter={handleFilter}
-        onClear={handleClear} // onClick={(tasks: TasksInterface[]) => setTasks(tasks)}
-      ></TaskItemsList>
-    </>
+    <main className={lightsTheme ? "main main__light" : "main main__dark"}>
+      <div className="container">
+        {/* {checkIcon} {crossIcon} */}
+        <header>
+          <h1>TODO</h1>
+          <span onClick={handleChnageTheme}>
+            {lightsTheme ? moonIcon : sunIcon}
+          </span>
+        </header>
+        <TasksForm
+          lightsTheme={lightsTheme}
+          onSubmit={handleSubmit}
+        ></TasksForm>
+        <TaskItemsList
+          lightsTheme={lightsTheme}
+          tasksList={visibleTasks}
+          onCheck={handleCheck}
+          onDelete={handleDelete}
+          onFilter={handleFilter}
+          onClear={handleClear} // onClick={(tasks: TasksInterface[]) => setTasks(tasks)}
+        ></TaskItemsList>
+      </div>
+    </main>
   );
 }
 

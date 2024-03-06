@@ -1,16 +1,40 @@
-#root {
-  /* for test */
-  /* border: 1px solid black; */
+.main {
+  min-height: 100vh;
+  /* margin-bottom: 5rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* height: 500px; */
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+}
+.main__light {
+  background-color: var(--neutral-very-light-gray);
+  background-image: url("src/images/bg-desktop-light.jpg");
+}
+.main__dark {
+  background-color: var(--Very-Dark-Blue);
+  background-image: url("src/images/bg-desktop-dark.jpg");
+}
+
+.container {
   margin: 5rem 0;
   width: 90%;
   max-width: 560px;
 }
 
 header {
+  /* for test */
+  /* border: 1px solid black; */
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 header svg:hover {
   cursor: pointer;
 }

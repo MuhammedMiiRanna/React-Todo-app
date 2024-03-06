@@ -10,17 +10,31 @@
   color: var(--neutral-Light-Grayish-Blue);
   text-decoration: line-through;
 }
+.task-check__dark {
+  color: var(--Very-Dark-Grayish-Blue);
+}
 
 .task-container {
   background-color: var(--neutral-very-light-gray);
   border-bottom: 1px solid var(--neutral-Light-Grayish-Blue);
   padding: 15px;
-  display: flex;
+  /* display: flex; */
   /* flex-direction: column; */
-  justify-content: flex-start;
+  /* justify-content: flex-start;
+    align-items: center; */
+
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* First and third columns auto-sized, second column takes remaining space */
+  /* gap: 16px;  */
+  justify-content: flex-start; /* Items at the start and end */
   align-items: center;
 }
 .task-container__dark {
+  color: var(--Light-Grayish-Blue);
   background-color: var(--Very-Dark-Desaturated-Blue);
   border-bottom: 1px solid var(--Very-Dark-Grayish-Blue);
+}
+.icon {
+  /* align-self: flex-end; */
+  justify-self: end;
 }

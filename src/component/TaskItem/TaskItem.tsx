@@ -1,4 +1,5 @@
 import CheckButton from "../CheckButton";
+import { IoMdClose } from "react-icons/io";
 import styles from "./TaskItem.module.css";
 
 interface Props {
@@ -6,10 +7,28 @@ interface Props {
   isChecked: boolean;
   lightsTheme: boolean;
   onCheck: () => void;
+  onDelete: () => void;
 }
 
 // children is the task content
-const TaskItem = ({ children, lightsTheme, isChecked, onCheck }: Props) => {
+const TaskItem = ({
+  children,
+  lightsTheme,
+  isChecked,
+  onCheck,
+  onDelete,
+}: Props) => {
+  const taskClass = (isChecked: boolean, lightsTheme: boolean) => {
+    // TODO: make this for darkTheme
+    const className = [styles["task"]];
+    if (isChecked) {
+      className.push(styles["task-check"]);
+      if (!lightsTheme) {
+        className.push(styles["task-check__dark"]);
+      }
+    }
+    return className.join(" ");
+  };
   return (
     <div
       className={
@@ -19,16 +38,10 @@ const TaskItem = ({ children, lightsTheme, isChecked, onCheck }: Props) => {
       }
     >
       <CheckButton isChecked={isChecked} onCheck={onCheck}></CheckButton>
-      <div
-        className={
-          // TODO: make this for darkTheme
-          isChecked
-            ? [styles["task"], styles["task-check"]].join(" ")
-            : styles["task"]
-        }
-      >
-        {children}
-      </div>
+      <div className={taskClass(isChecked, lightsTheme)}>{children}</div>
+      <button className={styles["icon"]} onClick={onDelete}>
+        <IoMdClose color={lightsTheme ? "black" : "white"} size="25" />
+      </button>
     </div>
   );
 };

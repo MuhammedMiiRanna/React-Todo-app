@@ -38,6 +38,10 @@
   cursor: pointer;
   color: var(--neutral-Very-Dark-Grayish-Blue);
 }
+.control__dark button:hover {
+  /* cursor: pointer; */
+  color: var(--Light-Grayish-Blue-hover);
+}
 .selected {
   color: var(--primary-bright-blue) !important;
 }
@@ -46,4 +50,9 @@
   border-bottom: 1px solid var(--neutral-Light-Grayish-Blue);
   padding: 10px;
   text-align: center;
+}
+.no-items__dark {
+  color: var(--Light-Grayish-Blue);
+  background-color: var(--Very-Dark-Desaturated-Blue);
+  border-bottom: 1px solid var(--Very-Dark-Grayish-Blue);
 }

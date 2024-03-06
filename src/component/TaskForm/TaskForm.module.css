@@ -19,9 +19,11 @@
 .task-container__whi {
   /* thats the for the light theme */
   background-color: var(--neutral-very-light-gray);
+  color: var(--Very-Dark-Blue);
 }
 .task-container__dark {
   background-color: var(--Very-Dark-Desaturated-Blue);
+  color: var(--Light-Grayish-Blue);
 }
 
 .task-container form {
@@ -29,6 +31,10 @@
   /* flex-direction: column; */
   justify-content: flex-start;
   align-items: center;
+}
+
+input {
+  color: inherit;
 }
 
 /* Other browsers */
@@ -48,9 +54,3 @@ input::-ms-input-placeholder {
   color: var(--neutral-Dark-Grayish-Blue);
   font-style: italic;
 }
-
-/* .text-dange {
-  font-size: 0.5rem;
-  margin: 1rem;
-  color: red;
-} */
