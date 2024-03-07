@@ -24,61 +24,42 @@ const TaskItemsList = ({
   const [selectedId, setSelectedid] = useState("0");
   const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 440);
 
-  const handleClick = (id: string) => {
-    setSelectedid(id);
-    id === "0"
-      ? onFilter("all")
-      : id === "1"
-      ? onFilter("active")
-      : onFilter("completed");
-    // console.log(event);
-  };
-  const handleResize = () => {
-    setIsWideScreen(window.innerWidth > 440);
-  };
   // Attach an event listener to handle screen width changes
-  window.addEventListener("resize", handleResize);
+  window.addEventListener("resize", function handleResize() {
+    setIsWideScreen(window.innerWidth > 440);
+  });
 
-  //
-  // some local components
-  const ItemsLeft = (tasksList: TasksInterface[]) => (
-    <div className={styles["items-left"]}>
-      {tasksList.reduce((acc, task) => (!task.isChecked ? acc + 1 : acc), 0)}{" "}
-      items left
-    </div>
-  );
-  const FilterButtons = (
-    selectedId: string,
-    handleClick: (id: string) => void
-  ) => (
-    // TODO: make this with a map func
-    <div>
-      <button
-        id="0"
-        onClick={() => handleClick("0")}
-        className={selectedId === "0" ? styles["selected"] : ""}
-      >
-        All
-      </button>
-      <button
-        id="1"
-        onClick={() => handleClick("1")}
-        className={selectedId === "1" ? styles["selected"] : ""}
-      >
-        Active
-      </button>
-      <button
-        id="2"
-        onClick={() => handleClick("2")}
-        className={selectedId === "2" ? styles["selected"] : ""}
-      >
-        Completed
-      </button>
-    </div>
-  );
-  const ClearCompletedButton = (onClear: () => void) => (
-    <button onClick={onClear}>Clear Completed</button>
-  );
+  /* Filter Buttons will be placed in different locations according to
+  the width (desktop or mobile), that's why we made a function, we will 
+  call it in two places */
+  const FilterButtons = (selectedId: string) => {
+    const buttonsText = ["All", "Active", "Selected"];
+
+    const handleClick = (id: string) => {
+      setSelectedid(id);
+      id === "0"
+        ? onFilter("all")
+        : id === "1"
+        ? onFilter("active")
+        : onFilter("completed");
+    };
+
+    return (
+      <div>
+        {buttonsText.map((item, index) => (
+          <button
+            key={index}
+            onClick={() => handleClick(index.toString())}
+            className={
+              selectedId === index.toString() ? styles["selected"] : ""
+            }
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -114,10 +95,18 @@ const TaskItemsList = ({
               : `${styles["control"]} ${styles["control__dark"]}`
           }
         >
-          {/* // TODO: think about removing this functions and just put the element directly in here */}
-          {ItemsLeft(tasksList)}
-          {isWideScreen ? <>{FilterButtons(selectedId, handleClick)}</> : ""}
-          {ClearCompletedButton(onClear)}
+          <div className={styles["items-left"]}>
+            {tasksList.reduce(
+              (acc, task) => (!task.isChecked ? acc + 1 : acc),
+              0
+            )}{" "}
+            items left
+          </div>
+          {/* FilterButtons will be placed in different locations according to
+          the width (desktop or mobile), that's why we made a function, we will 
+          call it in another location down below */}
+          {isWideScreen ? <>{FilterButtons(selectedId)}</> : ""}
+          <button onClick={onClear}>Clear Completed</button>
         </div>
       </div>
       {isWideScreen ? (
@@ -131,7 +120,7 @@ const TaskItemsList = ({
                 : `${styles["control"]} ${styles["control__mobile"]} ${styles["control__dark"]}`
             }
           >
-            {FilterButtons(selectedId, handleClick)}
+            {FilterButtons(selectedId)}
           </div>
         </>
       )}

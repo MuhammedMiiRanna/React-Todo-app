@@ -10,7 +10,6 @@ function App() {
   const [filterType, setFilterType] = useState("all");
   const [lightsTheme, setLightsTheme] = useState(false);
   // TODO: make a service to get those, maybe a class
-  // the tasks from local storage
   const [tasks, setTasks] = useState<TasksInterface[]>([
     { isChecked: false, task: "Learn more" },
     { isChecked: false, task: "Finish This project" },
@@ -24,17 +23,14 @@ function App() {
       : filterType === "active"
       ? tasks.filter((task) => !task.isChecked)
       : tasks.filter((task) => task.isChecked);
-  // TODO
-  // This function is used so each time a chnage is made it
-  // will be saved to local files or whatever xD
-  // const handleTasksChanges = () => {};
+
   const handleChnageTheme = () => {
     setLightsTheme(!lightsTheme);
     document.body.style.backgroundColor = "var(--Very-Dark-Blue);";
   };
 
   const handleSubmit = (taskTitle: string) => {
-    // console.log("> Submit !", task);
+    console.log("> Submit !", taskTitle);
     setTasks([{ isChecked: false, task: taskTitle }, ...tasks]);
   };
 
@@ -76,13 +72,16 @@ function App() {
           lightsTheme={lightsTheme}
           onSubmit={handleSubmit}
         ></TasksForm>
+        {/* PS: instead of passing all those functions, we can
+        just pass a function to change the state, and declare
+        those function in the component itself */}
         <TaskItemsList
           lightsTheme={lightsTheme}
           tasksList={visibleTasks}
           onCheck={handleCheck}
           onDelete={handleDelete}
           onFilter={handleFilter}
-          onClear={handleClear} // onClick={(tasks: TasksInterface[]) => setTasks(tasks)}
+          onClear={handleClear}
         ></TaskItemsList>
       </div>
     </main>

@@ -18,19 +18,17 @@ const TaskItem = ({
   onCheck,
   onDelete,
 }: Props) => {
-
   const taskClass = (isChecked: boolean, lightsTheme: boolean) => {
-    // TODO: make this for darkTheme
-    const className = [styles["task"]];
+    const classNames = [styles["task"]];
     if (isChecked) {
-      className.push(styles["task-check"]);
+      classNames.push(styles["task-check"]);
       if (!lightsTheme) {
-        className.push(styles["task-check__dark"]);
+        classNames.push(styles["task-check__dark"]);
       }
     }
-    return className.join(" ");
+    return classNames.join(" ");
   };
-  
+
   return (
     <div
       className={

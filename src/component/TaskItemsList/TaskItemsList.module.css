@@ -1,7 +1,6 @@
 .TaskItemsList {
   border-radius: 7px;
   overflow: hidden;
-
 }
 .control {
   /* color: dodgerblue; */
@@ -49,6 +48,7 @@
 }
 
 .selected {
+  /* important was used to override the control__dark rule */
   color: var(--primary-bright-blue) !important;
 }
 
