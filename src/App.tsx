@@ -9,9 +9,10 @@ import { TasksInterface } from "./interface";
 function App() {
   const [filterType, setFilterType] = useState("all");
   const [lightsTheme, setLightsTheme] = useState(false);
-  // TODO make a service to get
+  // TODO: make a service to get those, maybe a class
   // the tasks from local storage
   const [tasks, setTasks] = useState<TasksInterface[]>([
+    { isChecked: false, task: "Learn more" },
     { isChecked: false, task: "Finish This project" },
     { isChecked: true, task: "Start this project" },
     { isChecked: true, task: "Learn some react and js" },

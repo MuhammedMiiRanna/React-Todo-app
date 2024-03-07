@@ -22,7 +22,7 @@ const TaskItemsList = ({
   onClear,
 }: Props) => {
   const [selectedId, setSelectedid] = useState("0");
-  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 400);
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 440);
 
   const handleClick = (id: string) => {
     setSelectedid(id);
@@ -34,20 +34,24 @@ const TaskItemsList = ({
     // console.log(event);
   };
   const handleResize = () => {
-    setIsWideScreen(window.innerWidth > 400);
+    setIsWideScreen(window.innerWidth > 440);
   };
   // Attach an event listener to handle screen width changes
   window.addEventListener("resize", handleResize);
 
+  //
   // some local components
-  const itemsLeft = (
+  const ItemsLeft = (tasksList: TasksInterface[]) => (
     <div className={styles["items-left"]}>
       {tasksList.reduce((acc, task) => (!task.isChecked ? acc + 1 : acc), 0)}{" "}
       items left
     </div>
   );
-
-  const filterButtons = (
+  const FilterButtons = (
+    selectedId: string,
+    handleClick: (id: string) => void
+  ) => (
+    // TODO: make this with a map func
     <div>
       <button
         id="0"
@@ -72,53 +76,66 @@ const TaskItemsList = ({
       </button>
     </div>
   );
-
-  const ClearCompleted = <button onClick={onClear}>Clear Completed</button>;
+  const ClearCompletedButton = (onClear: () => void) => (
+    <button onClick={onClear}>Clear Completed</button>
+  );
 
   return (
-    <div className={styles["TaskItemsList"]}>
-      {tasksList.length > 0 ? (
-        tasksList.map((task, index) => {
-          return (
-            <TaskItem
-              lightsTheme={lightsTheme}
-              key={index}
-              children={task.task}
-              isChecked={task.isChecked}
-              onCheck={() => onCheck(index)}
-              onDelete={() => onDelete(index)}
-            ></TaskItem>
-          );
-        })
-      ) : (
+    <>
+      <div className={styles["TaskItemsList"]}>
+        {tasksList.length > 0 ? (
+          tasksList.map((task, index) => {
+            return (
+              <TaskItem
+                lightsTheme={lightsTheme}
+                key={index}
+                children={task.task}
+                isChecked={task.isChecked}
+                onCheck={() => onCheck(index)}
+                onDelete={() => onDelete(index)}
+              ></TaskItem>
+            );
+          })
+        ) : (
+          <div
+            className={
+              lightsTheme
+                ? styles["no-items"]
+                : [styles["no-items"], styles["no-items__dark"]].join(" ")
+            }
+          >
+            GG! No items so far
+          </div>
+        )}
         <div
           className={
             lightsTheme
-              ? styles["no-items"]
-              : [styles["no-items"], styles["no-items__dark"]].join(" ")
+              ? styles["control"]
+              : `${styles["control"]} ${styles["control__dark"]}`
           }
         >
-          GG! No items so far
+          {/* // TODO: think about removing this functions and just put the element directly in here */}
+          {ItemsLeft(tasksList)}
+          {isWideScreen ? <>{FilterButtons(selectedId, handleClick)}</> : ""}
+          {ClearCompletedButton(onClear)}
         </div>
-      )}
-      <div
-        className={
-          lightsTheme
-            ? styles["control"]
-            : `${styles["control"]} ${styles["control__dark"]}`
-        }
-      >
-        {itemsLeft}
-        {filterButtons}
-        {ClearCompleted}
       </div>
-      {/* // TODO: change this here so it  */}
-      {isWideScreen 
-      ? 
-      <div>Nahhh</div> 
-      : 
-      <div>Hell yeah</div>}
-    </div>
+      {isWideScreen ? (
+        ""
+      ) : (
+        <>
+          <div
+            className={
+              lightsTheme
+                ? `${styles["control"]} ${styles["control__mobile"]}`
+                : `${styles["control"]} ${styles["control__mobile"]} ${styles["control__dark"]}`
+            }
+          >
+            {FilterButtons(selectedId, handleClick)}
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

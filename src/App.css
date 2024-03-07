@@ -20,10 +20,27 @@
   background-image: url("src/images/bg-desktop-dark.jpg");
 }
 
+@media screen and (max-width: 690px) {
+  .main__light {
+    /* background-color: var(--neutral-very-light-gray); */
+    background-image: url("src/images/bg-mobile-light.jpg");
+  }
+  .main__dark {
+    /* background-color: var(--Very-Dark-Blue); */
+    background-image: url("src/images/bg-mobile-dark.jpg");
+  }
+}
+
 .container {
   margin: 5rem 0;
   width: 90%;
   max-width: 560px;
+}
+
+.container > :nth-child(n + 2) {
+  box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
+  -webkit-box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
+  -moz-box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
 }
 
 header {

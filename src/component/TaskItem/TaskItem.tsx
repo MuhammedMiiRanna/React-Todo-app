@@ -18,6 +18,7 @@ const TaskItem = ({
   onCheck,
   onDelete,
 }: Props) => {
+
   const taskClass = (isChecked: boolean, lightsTheme: boolean) => {
     // TODO: make this for darkTheme
     const className = [styles["task"]];
@@ -29,6 +30,7 @@ const TaskItem = ({
     }
     return className.join(" ");
   };
+  
   return (
     <div
       className={

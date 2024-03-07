@@ -1,9 +1,7 @@
 .TaskItemsList {
   border-radius: 7px;
   overflow: hidden;
-  box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
-  -webkit-box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
-  -moz-box-shadow: -3px 20px 41px -2px rgba(0, 0, 0, 0.32);
+
 }
 .control {
   /* color: dodgerblue; */
@@ -14,6 +12,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.control__mobile {
+  margin-top: 1.5rem;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
 }
 .control__dark {
   /* color: dodgerblue; */
@@ -42,9 +47,11 @@
   /* cursor: pointer; */
   color: var(--Light-Grayish-Blue-hover);
 }
+
 .selected {
   color: var(--primary-bright-blue) !important;
 }
+
 .no-items {
   background-color: var(--neutral-very-light-gray);
   border-bottom: 1px solid var(--neutral-Light-Grayish-Blue);
