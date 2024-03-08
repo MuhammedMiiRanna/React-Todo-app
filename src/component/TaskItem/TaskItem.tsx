@@ -8,6 +8,14 @@ interface Props {
   lightsTheme: boolean;
   onCheck: () => void;
   onDelete: () => void;
+  // }
+
+  // interface DraggableItemProps {
+  //   item: ListItem;
+  index: number;
+  onDragStart: (e: React.DragEvent<HTMLDivElement>, index: number) => void;
+  onDragEnd: () => void;
+  onDrop: (e: React.DragEvent<HTMLDivElement>, dropIndex: number) => void;
 }
 
 // children is the task content
@@ -17,6 +25,10 @@ const TaskItem = ({
   isChecked,
   onCheck,
   onDelete,
+  index,
+  onDragStart,
+  onDragEnd,
+  onDrop,
 }: Props) => {
   const taskClass = (isChecked: boolean, lightsTheme: boolean) => {
     const classNames = [styles["task"]];
@@ -36,6 +48,11 @@ const TaskItem = ({
           ? styles["task-container"]
           : `${styles["task-container"]} ${styles["task-container__dark"]}`
       }
+      draggable
+      onDragStart={(e) => onDragStart(e, index)}
+      onDragEnd={onDragEnd}
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => onDrop(e, index)}
     >
       <CheckButton isChecked={isChecked} onCheck={onCheck}></CheckButton>
       <div className={taskClass(isChecked, lightsTheme)}>{children}</div>

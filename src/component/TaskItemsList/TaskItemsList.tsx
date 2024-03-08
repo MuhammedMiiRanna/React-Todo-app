@@ -5,6 +5,7 @@ import styles from "./TaskItemsList.module.css";
 
 interface Props {
   tasksList: TasksInterface[];
+  setTasksList: (tasks: TasksInterface[]) => void;
   lightsTheme: boolean;
   // handleClick: (data: TasksInterface) => void;
   onCheck: (index: number) => void;
@@ -15,6 +16,7 @@ interface Props {
 
 const TaskItemsList = ({
   tasksList,
+  setTasksList,
   lightsTheme,
   onCheck,
   onDelete,
@@ -61,6 +63,49 @@ const TaskItemsList = ({
     );
   };
 
+  // >>>>>>>>>>>>>>>>>>>>>>>>  <<<<<<<<<<<<<<<<<<<<<<<<
+  // >>>>>>>> Functions for the drag and drop <<<<<<<<
+  // >>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<
+  const [, setDraggingIndex] = useState<number | null>(null);
+
+  const handleDragStart = (
+    e: React.DragEvent<HTMLDivElement>,
+    index: number
+  ) => {
+    setDraggingIndex(index);
+    e.dataTransfer.setData("text/plain", index.toString());
+    const target = e.currentTarget;
+    if (target) {
+      setTimeout(() => {
+        target.classList.add("dragging");
+      }, 0);
+    }
+  };
+  const handleDragEnd = () => {
+    const draggingItem = document.querySelector(".draggable-item.dragging");
+    if (draggingItem) {
+      draggingItem.classList.remove("dragging");
+    }
+    setDraggingIndex(null);
+  };
+  const handleDrop = (
+    e: React.DragEvent<HTMLDivElement>,
+    dropIndex: number
+  ) => {
+    e.preventDefault();
+    const dragIndex = parseInt(e.dataTransfer.getData("text/plain"));
+    if (dragIndex === dropIndex) {
+      return;
+    }
+    const newItems = [...tasksList];
+    const [draggedItem] = newItems.splice(dragIndex, 1);
+    newItems.splice(dropIndex, 0, draggedItem);
+    setTasksList(newItems);
+    handleDragEnd();
+  };
+  // ////////////////////////////////////////////////////////
+  // ////////////////////////////////////////////////////////
+
   return (
     <>
       <div className={styles["TaskItemsList"]}>
@@ -74,6 +119,10 @@ const TaskItemsList = ({
                 isChecked={task.isChecked}
                 onCheck={() => onCheck(index)}
                 onDelete={() => onDelete(index)}
+                index={index}
+                onDragStart={handleDragStart}
+                onDragEnd={handleDragEnd}
+                onDrop={handleDrop}
               ></TaskItem>
             );
           })
@@ -104,7 +153,7 @@ const TaskItemsList = ({
           </div>
           {/* FilterButtons will be placed in different locations according to
           the width (desktop or mobile), that's why we made a function, we will 
-          call it in another location down below */}
+        call it in another location down below */}
           {isWideScreen ? <>{FilterButtons(selectedId)}</> : ""}
           <button onClick={onClear}>Clear Completed</button>
         </div>

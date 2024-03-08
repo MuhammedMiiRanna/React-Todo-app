@@ -78,11 +78,21 @@ function App() {
         <TaskItemsList
           lightsTheme={lightsTheme}
           tasksList={visibleTasks}
+          setTasksList={setTasks}
           onCheck={handleCheck}
           onDelete={handleDelete}
           onFilter={handleFilter}
           onClear={handleClear}
         ></TaskItemsList>
+      </div>
+      <div
+        style={
+          lightsTheme
+            ? { color: "var(--Very-Dark-Desaturated-Blue)" }
+            : { color: "var(--neutral-Dark-Grayish-Blue)" }
+        }
+      >
+        Drag and drop To reorder list
       </div>
     </main>
   );
