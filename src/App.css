@@ -13,21 +13,21 @@
 }
 .main__light {
   background-color: var(--neutral-very-light-gray);
-  background-image: url("src/images/bg-desktop-light.jpg");
+  background-image: url("/src/images/bg-desktop-light.jpg");
 }
 .main__dark {
   background-color: var(--Very-Dark-Blue);
-  background-image: url("src/images/bg-desktop-dark.jpg");
+  background-image: url("/src/images/bg-desktop-dark.jpg");
 }
 
 @media screen and (max-width: 690px) {
   .main__light {
     /* background-color: var(--neutral-very-light-gray); */
-    background-image: url("src/images/bg-mobile-light.jpg");
+    background-image: url("/src/images/bg-mobile-light.jpg");
   }
   .main__dark {
     /* background-color: var(--Very-Dark-Blue); */
-    background-image: url("src/images/bg-mobile-dark.jpg");
+    background-image: url("/src/images/bg-mobile-dark.jpg");
   }
 }
 
